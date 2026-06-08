@@ -1,5 +1,5 @@
 # Proyecto de Encuestas con Django
-Este repositorio contiene un proyecto básico desarrollado siguiendo el tutorial oficial de Django. La aplicación principal, llamada polls, con el objetivo de aprender los fundamentos de Django
+Este repositorio contiene un proyecto básico desarrollado siguiendo el tutorial oficial de Django. La aplicación principal, llamada polls, con el objetivo de aprender los fundamentos de Django con vistas No Code
 
 ### Características
 - Listado de preguntas disponibles.
@@ -12,6 +12,7 @@ Este repositorio contiene un proyecto básico desarrollado siguiendo el tutorial
 - Python 3.11
 - Django 6.0
 - SQLite (base de datos por defecto)
+- Gemini para No Code
 
 ###  Licencia
 Este proyecto está bajo la licencia MIT.  
@@ -26,7 +27,7 @@ Podés usarlo, modificarlo y distribuirlo libremente, siempre citando la autorí
 ____________________________________________________________________________________________________________
 
 # Survey project with Django
-This repository contains a basic project developed following the official Django tutorial. The main application, called polls, to learn the basics of Django
+This repository contains a basic project developed following the official Django tutorial. The main application, called polls, to learn the basics of Django with views No Code
 
 ### Features
 - List of available questions.
@@ -39,6 +40,7 @@ This repository contains a basic project developed following the official Django
 - Python 3.11
 - Django 6.0
 - SQLite (default database)
+- Gemini for No Code
 
 ### License
 This project is under MIT license.  
