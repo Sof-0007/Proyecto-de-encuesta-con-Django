@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+
+{% block title %}Inicio - IA y Redes Neuronales{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="relative py-20 overflow-hidden">
+    <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <!-- Left Content -->
+            <div class="space-y-6">
+                <h1 class="text-5xl md:text-6xl font-bold leading-tight">
+                    <span class="gradient-text">Inteligencia Artificial</span>
+                    <br>
+                    y Redes Neuronales
+                </h1>
+                <p class="text-xl text-gray-300">
+                    Descubre los fundamentos de la IA y aprende sobre redes neuronales artificiales en una plataforma educativa moderna e interactiva.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 pt-6">
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'dashboard' %}" class="btn-primary text-center">
+                            <i class="fas fa-chart-line mr-2"></i>Ir al Dashboard
+                        </a>
+                    {% else %}
+                        <a href="{% url 'login' %}" class="btn-primary text-center">
+                            <i class="fas fa-sign-in-alt mr-2"></i>Iniciar Sesión
+                        </a>
+                        <a href="{% url 'register' %}" class="btn-secondary text-center">
+                            <i class="fas fa-user-plus mr-2"></i>Registrarse
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <!-- Right Visual -->
+            <div class="hidden md:flex justify-center items-center">
+                <div class="relative w-80 h-80 pulse">
+                    <div class="absolute inset-0 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full opacity-20 blur-3xl"></div>
+                    <div class="absolute inset-8 bg-gradient-to-br from-violet-500 to-indigo-600 rounded-full opacity-20 blur-2xl"></div>
+                    <div class="relative flex items-center justify-center h-full">
+                        <i class="fas fa-brain text-8xl gradient-text"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="py-20 bg-gradient-to-b from-transparent to-rgba(99, 102, 241, 0.05)">
+    <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-16 gradient-text">¿Qué aprenderás?</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Feature 1: IA Definition -->
+            <div class="card">
+                <div class="text-5xl mb-4 text-indigo-400">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-4">Inteligencia Artificial</h3>
+                <p class="text-gray-300 mb-4">
+                    Explora definiciones académicas de autores destacados como John McCarthy, Stuart Russell y Marvin Minsky.
+                </p>
+                <p class="text-sm text-gray-400">Accede al dashboard para ver definiciones detalladas</p>
+            </div>
+            
+            <!-- Feature 2: Neural Networks -->
+            <div class="card">
+                <div class="text-5xl mb-4 text-purple-400">
+                    <i class="fas fa-network-wired"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-4">Redes Neuronales</h3>
+                <p class="text-gray-300 mb-4">
+                    Comprende cómo funcionan las redes neuronales artificiales y su relación con el cerebro humano.
+                </p>
+                <p class="text-sm text-gray-400">Incluye diagramas y ejemplos interactivos</p>
+            </div>
+            
+            <!-- Feature 3: Types -->
+            <div class="card">
+                <div class="text-5xl mb-4 text-violet-400">
+                    <i class="fas fa-cube"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-4">Tipos de Redes</h3>
+                <p class="text-gray-300 mb-4">
+                    Descubre diferentes arquitecturas: CNN, RNN, LSTM, GANs, Transformers y más.
+                </p>
+                <p class="text-sm text-gray-400">Casos de uso y aplicaciones prácticas</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-20">
+    <div class="container mx-auto px-4">
+        <div class="card text-center max-w-2xl mx-auto">
+            <h3 class="text-3xl font-bold mb-6">Comienza tu viaje en IA</h3>
+            <p class="text-lg text-gray-300 mb-8">
+                Únete a nuestra comunidad de estudiosos de la Inteligencia Artificial y Redes Neuronales. Aprende a tu propio ritmo.
+            </p>
+            {% if not user.is_authenticated %}
+                <a href="{% url 'register' %}" class="btn-primary inline-block">
+                    <i class="fas fa-rocket mr-2"></i>Comenzar Ahora
+                </a>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}
