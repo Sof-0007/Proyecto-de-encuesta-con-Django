@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}IA y Redes Neuronales{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --accent: #a78bfa;
+            --dark: #1e293b;
+            --light: #f1f5f9;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--dark) 0%, #2d1b69 100%);
+            color: #e2e8f0;
+            min-height: 100vh;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        nav {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        footer {
+            background: rgba(15, 23, 42, 0.8);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .pulse {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.4); }
+            50% { box-shadow: 0 0 40px rgba(99, 102, 241, 0.6); }
+        }
+    </style>
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <a href="{% url 'landing' %}" class="text-2xl font-bold gradient-text">
+                    <i class="fas fa-brain mr-2"></i>IA Neural
+                </a>
+                
+                <div class="flex items-center gap-4">
+                    {% if user.is_authenticated %}
+                        <span class="text-sm">Bienvenido, <strong>{{ user.username }}</strong></span>
+                        <a href="{% url 'dashboard' %}" class="btn-primary">Dashboard</a>
+                        <a href="{% url 'logout' %}" class="btn-secondary">Salir</a>
+                    {% else %}
+                        <a href="{% url 'login' %}" class="btn-primary">Iniciar Sesión</a>
+                        <a href="{% url 'register' %}" class="btn-secondary">Registrarse</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Messages -->
+    {% if messages %}
+        <div class="container mx-auto px-4 py-4">
+            {% for message in messages %}
+                <div class="p-4 rounded-lg mb-4 {% if message.tags %}bg-{{ message.tags }}-100 text-{{ message.tags }}-700{% else %}bg-blue-100 text-blue-700{% endif %}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <!-- Main Content -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-20">
+        <div class="container mx-auto px-4 py-10">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h4 class="font-bold text-lg mb-4 gradient-text">IA Neural</h4>
+                    <p class="text-sm text-gray-400">Plataforma educativa sobre Inteligencia Artificial y Redes Neuronales Artificiales.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Enlaces</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="{% url 'landing' %}" class="hover:text-primary transition">Inicio</a></li>
+                        <li><a href="{% url 'login' %}" class="hover:text-primary transition">Iniciar Sesión</a></li>
+                        <li><a href="{% url 'register' %}" class="hover:text-primary transition">Registrarse</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Recursos</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-primary transition">Documentación</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Tutorial</a></li>
+                        <li><a href="#" class="hover:text-primary transition">FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Síguenos</h4>
+                    <div class="flex gap-4">
+                        <a href="#" class="hover:text-primary transition"><i class="fab fa-github"></i></a>
+                        <a href="#" class="hover:text-primary transition"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="hover:text-primary transition"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="border-gray-700 my-8">
+            <div class="text-center text-sm text-gray-400">
+                <p>&copy; 2024 IA y Redes Neuronales. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

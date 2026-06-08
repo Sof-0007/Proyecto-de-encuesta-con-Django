@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard - IA y Redes Neuronales{% endblock %}
+
+{% block content %}
+<section class="py-12">
+    <div class="container mx-auto px-4">
+        <!-- Header -->
+        <div class="mb-12">
+            <h1 class="text-5xl font-bold gradient-text mb-4">
+                <i class="fas fa-chart-line mr-2"></i>Dashboard de Aprendizaje
+            </h1>
+            <p class="text-gray-300 text-lg">
+                Explora los conceptos fundamentales de la Inteligencia Artificial y Redes Neuronales
+            </p>
+        </div>
+
+        <!-- SECTION A: AI Definitions -->
+        <section class="mb-16">
+            <div class="mb-8">
+                <h2 class="text-4xl font-bold mb-2 flex items-center">
+                    <i class="fas fa-lightbulb text-indigo-400 mr-3"></i>
+                    Definición de Inteligencia Artificial
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 rounded"></div>
+            </div>
+            
+            <p class="text-gray-300 mb-8 text-lg">
+                La Inteligencia Artificial (IA) es la capacidad de una máquina para imitar el comportamiento humano inteligente. A continuación, se presentan las definiciones de autores destacados en el campo:
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {% for author in ai_authors %}
+                    <div class="card group">
+                        <div class="flex items-center mb-4">
+                            <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-user text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold">{{ author.name }}</h3>
+                                <p class="text-sm text-gray-400">{{ author.year }}</p>
+                            </div>
+                        </div>
+                        
+                        <div class="pt-4 border-t border-rgba(255, 255, 255, 0.1)">
+                            <p class="text-gray-300 italic">
+                                "{{ author.definition }}"
+                            </p>
+                        </div>
+                    </div>
+                {% empty %}
+                    <p class="text-gray-400 col-span-3">No hay definiciones disponibles aún.</p>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- SECTION B: Neural Networks Definition -->
+        <section class="mb-16">
+            <div class="mb-8">
+                <h2 class="text-4xl font-bold mb-2 flex items-center">
+                    <i class="fas fa-network-wired text-purple-400 mr-3"></i>
+                    Definición de Redes Neuronales Artificiales
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="card">
+                    <h3 class="text-2xl font-bold mb-4 text-purple-300">¿Qué son?</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        Las Redes Neuronales Artificiales (RNA) son sistemas computacionales inspirados en las redes neuronales biológicas del cerebro. Están compuestas por nodos interconectados que procesan información mediante patrones de conectividad que cambian durante el proceso de aprendizaje.
+                    </p>
+                </div>
+                
+                <div class="card">
+                    <h3 class="text-2xl font-bold mb-4 text-purple-300">¿Cómo funcionan?</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        Las RNA reciben datos de entrada, los procesan a través de capas de neuronas artificiales con pesos y sesgos ajustables, y producen salidas. El aprendizaje ocurre cuando estos pesos se ajustan para minimizar el error entre la salida predicha y la salida real.
+                    </p>
+                </div>
+                
+                <div class="card">
+                    <h3 class="text-2xl font-bold mb-4 text-purple-300">Relación con el Cerebro</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        Las redes neuronales artificiales imitan la estructura y funcionamiento del cerebro humano. Cada neurona artificial representa una neurona biológica, y las sinapsis se representan como pesos en las conexiones entre neuronas.
+                    </p>
+                </div>
+                
+                <div class="card">
+                    <h3 class="text-2xl font-bold mb-4 text-purple-300">Su Rol en IA</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        Las redes neuronales son el motor de muchas aplicaciones de IA modernas, incluyendo visión por computadora, procesamiento del lenguaje natural, sistemas de recomendación y mucho más. Son fundamentales para el aprendizaje profundo.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION C: Neural Network Types -->
+        <section>
+            <div class="mb-8">
+                <h2 class="text-4xl font-bold mb-2 flex items-center">
+                    <i class="fas fa-cube text-violet-400 mr-3"></i>
+                    Tipos de Redes Neuronales Artificiales
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-violet-500 to-indigo-500 rounded"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {% for nn_type in neural_network_types %}
+                    <div class="card">
+                        <div class="flex items-center mb-4">
+                            <div class="w-14 h-14 bg-gradient-to-br from-violet-500 to-indigo-500 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-{{ nn_type.icon }} text-2xl"></i>
+                            </div>
+                        </div>
+                        
+                        <h3 class="text-xl font-bold mb-3 text-violet-300">{{ nn_type.name }}</h3>
+                        
+                        <div class="mb-4 pb-4 border-b border-rgba(255, 255, 255, 0.1)">
+                            <p class="text-sm font-semibold text-gray-400 mb-2">Descripción:</p>
+                            <p class="text-gray-300 text-sm">{{ nn_type.description }}</p>
+                        </div>
+                        
+                        <div>
+                            <p class="text-sm font-semibold text-gray-400 mb-2">Casos de Uso:</p>
+                            <p class="text-gray-300 text-sm">{{ nn_type.use_case }}</p>
+                        </div>
+                    </div>
+                {% empty %}
+                    <p class="text-gray-400 col-span-3">No hay tipos de redes disponibles aún.</p>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- Action Buttons -->
+        <div class="mt-16 text-center">
+            <div class="card max-w-2xl mx-auto">
+                <h3 class="text-2xl font-bold mb-4">¿Necesitas más información?</h3>
+                <p class="text-gray-300 mb-6">
+                    Sigue explorando las diferentes secciones del dashboard para profundizar en tus conocimientos.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#" class="btn-primary">
+                        <i class="fas fa-book mr-2"></i>Recursos Adicionales
+                    </a>
+                    <a href="{% url 'logout' %}" class="btn-secondary">
+                        <i class="fas fa-sign-out-alt mr-2"></i>Cerrar Sesión
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
